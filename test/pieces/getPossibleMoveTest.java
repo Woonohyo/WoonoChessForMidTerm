@@ -21,5 +21,13 @@ public class getPossibleMoveTest extends TestCase {
 		List<Position> rookPossibleMove = rook.getPossibleMoves();
 		assertEquals(14, rookPossibleMove.size());
 	}
+	
+	public void testBishop() throws Exception {
+		Position position = new Position("e4");
+		Piece bishop = new Bishop(Color.WHITE, position);
+		List<Position> rookPossibleMove = bishop.getPossibleMoves();
+		assertEquals(13, rookPossibleMove.size());
+		
+	}
 
 }
