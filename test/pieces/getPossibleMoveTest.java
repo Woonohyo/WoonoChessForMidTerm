@@ -12,7 +12,6 @@ public class getPossibleMoveTest extends TestCase {
 		Piece empty = new Empty(Color.NOCOLOR, position);
 		List<Position> emptyPossibleMove = empty.getPossibleMoves();
 		assertEquals(0, emptyPossibleMove.size());
-		
 	}
 	
 	public void testRook() throws Exception {
@@ -27,7 +26,12 @@ public class getPossibleMoveTest extends TestCase {
 		Piece bishop = new Bishop(Color.WHITE, position);
 		List<Position> rookPossibleMove = bishop.getPossibleMoves();
 		assertEquals(13, rookPossibleMove.size());
-		
 	}
-
+	
+	public void testQueen() throws Exception {
+		Position position = new Position("f5");
+		Piece queen = new Queen(Color.WHITE, position);
+		List<Position> queenPossibleMove = queen.getPossibleMoves();
+		assertEquals(25, queenPossibleMove.size());
+	}
 }

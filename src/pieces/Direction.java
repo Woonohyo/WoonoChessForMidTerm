@@ -38,4 +38,9 @@ public enum Direction {
 	public static Direction[] emptyDirection() {
 		return new Direction[] {};
 	}
+	
+	//Queen을 위한 모든 방향이 담긴 배열.
+	public static Direction[] allDirection() {
+		return new Direction[] { NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST };
+	}
 }
