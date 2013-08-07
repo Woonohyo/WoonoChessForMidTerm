@@ -50,6 +50,17 @@ public class Position {
 		return positions;
 	}
 	
+	// 1칸만 이동할 수 있는 기물에게 필요한 메소드입니다.
+	List<Position> findsPositionOnce(Direction direction) {
+		ArrayList<Position> positions = new ArrayList<Position>();
+		Position currentPosition = move(direction);
+		if(currentPosition.isValid()) {
+			positions.add(currentPosition);
+			currentPosition = currentPosition.move(direction);
+		}
+		return positions;
+	}
+	
 	boolean isValid() {
 		if ( y < 0 || y >= Board.ROW_SIZE) {
 			return false;
