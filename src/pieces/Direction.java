@@ -33,4 +33,9 @@ public enum Direction {
 	public static Direction[] diagonalDirection() {
 		return new Direction[] { NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST };
 	}
+	
+	// Empty를 위한 아무 방향도 담기지 않은 배열.
+	public static Direction[] emptyDirection() {
+		return new Direction[] {};
+	}
 }

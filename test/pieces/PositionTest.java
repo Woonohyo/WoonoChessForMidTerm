@@ -12,8 +12,4 @@ public class PositionTest extends TestCase {
 		assertEquals(4, position.getX());
 		assertEquals(1, position.getY());
 	}
-	
-	public void testMoveOneRoom() throws Exception {
-		Position position = new Position("b3");
-	}
 }
