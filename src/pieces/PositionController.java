@@ -57,4 +57,40 @@ public class PositionController {
 		return positions;
 	}
 
+	public List<Position> findsNorthPositionTwice() {
+		Direction[] north = Direction.northDirection();
+		List<Position> positions = new ArrayList<Position>();
+		for (Direction direction : north) {
+			positions.addAll(position.findsPositionTwice(direction));
+		}
+		return positions;
+	}
+
+	public List<Position> findsNorthPositionOnce() {
+		Direction[] north = Direction.northDirection();
+		List<Position> positions = new ArrayList<Position>();
+		for (Direction direction : north) {
+			positions.addAll(position.findsPositionOnce(direction));
+		}
+		return positions;
+	}
+
+	public List<Position> findsSouthPositionTwice() {
+		Direction[] south = Direction.southDirection();
+		List<Position> positions = new ArrayList<Position>();
+		for (Direction direction : south) {
+			positions.addAll(position.findsPositionTwice(direction));
+		}
+		return positions;
+	}
+
+	public List<Position> findsSouthPositionOnce() {
+		Direction[] south = Direction.southDirection();
+		List<Position> positions = new ArrayList<Position>();
+		for (Direction direction : south) {
+			positions.addAll(position.findsPositionOnce(direction));
+		}
+		return positions;
+	}
+
 }

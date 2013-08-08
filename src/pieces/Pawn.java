@@ -10,6 +10,14 @@ public class Pawn extends Piece {
 
 	@Override
 	List<Position> getPossibleMoves() {
-		return null;
+		PositionController possibleMoves = new PositionController(super.getPosition());
+		
+		if ( this.getPosition().getY() == 1 && this.isWhite() )
+			return possibleMoves.findsNorthPositionTwice();
+		else if ( this.isWhite() )
+			return possibleMoves.findsNorthPositionOnce();
+		else if ( this.getPosition().getY() == 6 && this.isBlack() )
+			return possibleMoves.findsSouthPositionTwice();
+		else return possibleMoves.findsSouthPositionOnce();
 	}
 }

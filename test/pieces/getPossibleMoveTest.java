@@ -45,4 +45,26 @@ public class getPossibleMoveTest extends TestCase {
 		assertEquals(3, kingPossibleMove1.size()); // 구석에서 이동하므로 3
 		assertEquals(8, kingPossibleMove2.size()); // 중앙에서 이동시 8
 	}
+	
+	public void testPawn() throws Exception {
+		Position position1 = new Position("h2");
+		Position position2 = new Position("h3");
+		Position position3 = new Position("h7");
+		Position position4 = new Position("h6");
+		
+		Piece whitePawn1 = new Pawn(Color.WHITE, position1);
+		Piece whitePawn2 = new Pawn(Color.WHITE, position2);
+		Piece blackPawn1 = new Pawn(Color.BLACK, position3);
+		Piece blackPawn2 = new Pawn(Color.BLACK, position4);
+
+		List<Position> whitePawnMove1 = whitePawn1.getPossibleMoves();
+		List<Position> whitePawnMove2 = whitePawn2.getPossibleMoves();
+		List<Position> blackPawnMove1 = blackPawn1.getPossibleMoves();
+		List<Position> blackPawnMove2 = blackPawn2.getPossibleMoves();
+
+		assertEquals(2, whitePawnMove1.size());
+		assertEquals(1, whitePawnMove2.size());
+		assertEquals(2, blackPawnMove1.size());
+		assertEquals(1, blackPawnMove2.size());
+	}
 }
