@@ -74,6 +74,20 @@ public class Position {
 		return positions;
 	}
 	
+	// 나이트의 이동을 구현하기 위해 필요한 메소드입니다.
+	List<Position> findsPositionKnight(Direction via, Direction move) {
+		int i = 0 ;
+		ArrayList<Position> positions = new ArrayList<Position>();
+		Position currentPosition = move(via);
+		currentPosition = currentPosition.move(move);
+		while (currentPosition.isValid() && i < 2) {
+			positions.add(currentPosition);
+			currentPosition = currentPosition.move(via).move(move);
+			i++;
+		}
+		return positions;
+	}
+	
 	
 	boolean isValid() {
 		if ( y < 0 || y >= Board.ROW_SIZE) {

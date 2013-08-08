@@ -93,4 +93,17 @@ public class PositionController {
 		return positions;
 	}
 
+	public List<Position> findsKnightPosition() {
+		Direction[] linear = Direction.linearDirection();
+		Direction[] diagonal = Direction.diagonalDirection();
+		
+		List<Position> positions = new ArrayList<Position>();
+		for (Direction via : linear)
+			for (Direction move : diagonal) {
+			positions.addAll(position.findsPositionKnight(via, move));
+		}
+		
+		return positions;
+	}
+
 }

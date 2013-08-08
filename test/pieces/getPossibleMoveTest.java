@@ -67,4 +67,13 @@ public class getPossibleMoveTest extends TestCase {
 		assertEquals(2, blackPawnMove1.size());
 		assertEquals(1, blackPawnMove2.size());
 	}
+	
+	public void testKnight() throws Exception {
+		Position position1 = new Position("d4");
+		Piece whiteKnight = new Knight(Color.WHITE, position1);
+		List<Position> whiteKnightMove = whiteKnight.getPossibleMoves();
+		
+		System.out.println(whiteKnightMove);
+		assertEquals(8, whiteKnightMove.size());
+	}
 }
