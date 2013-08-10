@@ -88,7 +88,7 @@ public abstract class Piece {
 			throw new InvalidMoveException("옳지 않은 좌표입니다.");
 	}
 
-	abstract List<Position> getPossibleMoves();
+	public abstract List<Position> getPossibleMoves();
 	
 	@Override
 	public int hashCode() {

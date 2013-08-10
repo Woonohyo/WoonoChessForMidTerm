@@ -9,6 +9,7 @@ public class Queen extends Piece {
 	}
 
 	@Override
+	public
 	List<Position> getPossibleMoves() {
 		PositionController possibleMoves = new PositionController(super.getPosition());
 		

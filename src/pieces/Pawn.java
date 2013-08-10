@@ -9,6 +9,7 @@ public class Pawn extends Piece {
 	}
 
 	@Override
+	public
 	List<Position> getPossibleMoves() {
 		PositionController possibleMoves = new PositionController(super.getPosition());
 		
