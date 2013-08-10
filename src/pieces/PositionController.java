@@ -102,6 +102,8 @@ public class PositionController {
 			for (Direction move : diagonal) {
 			positions.addAll(position.findsPositionKnight(via, move));
 		}
+		for (Direction direction : linear)
+			positions.removeAll(position.findsPositionOnce(direction));
 		
 		return positions;
 	}

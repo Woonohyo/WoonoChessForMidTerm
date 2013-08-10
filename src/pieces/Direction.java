@@ -51,4 +51,5 @@ public enum Direction {
 	public static Direction[] southDirection() {
 		return new Direction[] { SOUTH };
 	}
+	
 }
