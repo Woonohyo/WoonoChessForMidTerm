@@ -72,10 +72,17 @@ public abstract class Piece {
 	}
 	
 	public Piece move(Position target) {
-		this.position = target;
-		return this;
+		if (this.type == Type.EMPTY || this.color == Color.NOCOLOR) {
+			System.out.println("이동하려는 위치에 기물이 존재하지 않습니다.");
+			return this;
+		}
+		
+		else {
+			this.position = target;
+			return this;
+		}
 	}
-	
+
 	abstract List<Position> getPossibleMoves();
 	
 	@Override

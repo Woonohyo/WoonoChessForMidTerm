@@ -104,7 +104,7 @@ public class PositionController {
 		}
 		for (Direction direction : linear)
 			positions.removeAll(position.findsPositionOnce(direction));
-		
+
 		return positions;
 	}
 
