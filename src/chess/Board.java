@@ -3,7 +3,7 @@ package chess;
 import java.util.ArrayList;
 import java.util.List;
 
-import pieces.Piece;
+import pieces.PieceOperations;
 import pieces.Position;
 
 public class Board {
@@ -42,12 +42,12 @@ public class Board {
 		}
 	}
 
-	Piece findPiece(String xy) {
+	PieceOperations findPiece(String xy) {
 		Position position = new Position(xy);
 		return findPiece(position);
 	}
 
-	Piece findPiece(Position position) {
+	PieceOperations findPiece(Position position) {
 		Rank rank = ranks.get(position.getY());
 		return rank.findPiece(position);
 	}
@@ -68,8 +68,8 @@ public class Board {
 			return;
 		}
 
-		Piece targetPiece = findPiece(source);
-		Piece sourcePiece = targetPiece.leave();
+		PieceOperations targetPiece = findPiece(source);
+		PieceOperations sourcePiece = targetPiece.leave();
 
 		Rank sourceRank = ranks.get(source.getY());
 		sourceRank.move(sourcePiece, source);
@@ -80,7 +80,7 @@ public class Board {
 
 	private void isPossibleMove(Position source, Position target)
 			throws Exception, ImpossibleMoveException {
-		Piece sourcePiece = findPiece(source);
+		PieceOperations sourcePiece = findPiece(source);
 		List<Position> possibleMoves = sourcePiece.getPossibleMoves();
 		
 		if (!(possibleMoves.contains(target)))
@@ -89,8 +89,8 @@ public class Board {
 
 	private void isColorSame(Position source, Position target)
 			throws Exception, SameColorTargetException {
-		Piece targetPiece = findPiece(target);
-		Piece sourcePiece = findPiece(source);
+		PieceOperations targetPiece = findPiece(target);
+		PieceOperations sourcePiece = findPiece(source);
 
 		if (targetPiece.getColor() == sourcePiece.getColor())
 			throw new SameColorTargetException("이동하려는 위치에 같은 편 말이 존재합니다.");

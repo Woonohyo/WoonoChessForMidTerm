@@ -3,7 +3,7 @@ package pieces;
 import java.util.List;
 
 
-public abstract class Piece {
+public abstract class Piece implements PieceOperations{
 	public enum Color {
 		WHITE,
 		BLACK,
@@ -40,6 +40,10 @@ public abstract class Piece {
 		this.position = position;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#getSymbol()
+	 */
+	@Override
 	public char getSymbol() {
 		if (isBlack()) {
 			return Character.toUpperCase(type.getSymbol());
@@ -67,11 +71,19 @@ public abstract class Piece {
 		return this.color == color ? true : false;
 	}
 
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#leave()
+	 */
+	@Override
 	public Piece leave() {
 		return new Empty(Color.NOCOLOR, this.position);
 	}
 	
-	public Piece move(Position target) throws Exception {
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#move(pieces.Position)
+	 */
+	@Override
+	public PieceOperations move(Position target) throws Exception {
 		try {
 			checkPosition(target);
 		} catch (InvalidMoveException e) {
@@ -88,8 +100,15 @@ public abstract class Piece {
 			throw new InvalidMoveException("옳지 않은 좌표입니다.");
 	}
 
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#getPossibleMoves()
+	 */
+	@Override
 	public abstract List<Position> getPossibleMoves();
 	
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,6 +120,9 @@ public abstract class Piece {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -122,16 +144,27 @@ public abstract class Piece {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Piece [color=" + color + ", type=" + type + ", position="
 				+ position + "]";
 	}
 	
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#getPosition()
+	 */
+	@Override
 	public Position getPosition() {
 		return this.position;
 	}
 
+	/* (non-Javadoc)
+	 * @see pieces.PieceOperations#getColor()
+	 */
+	@Override
 	public Color getColor() {
 		return this.color;
 	}
