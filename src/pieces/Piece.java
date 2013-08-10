@@ -71,16 +71,21 @@ public abstract class Piece {
 		return new Empty(Color.NOCOLOR, this.position);
 	}
 	
-	public Piece move(Position target) {
-		if (this.type == Type.EMPTY || this.color == Color.NOCOLOR) {
-			System.out.println("이동하려는 위치에 기물이 존재하지 않습니다.");
-			return this;
+	public Piece move(Position target) throws Exception {
+		try {
+			checkPosition(target);
+		} catch (InvalidMoveException e) {
+			System.out.println(e.getMessage());
 		}
+
+		this.position = target;
 		
-		else {
-			this.position = target;
-			return this;
-		}
+		return this;
+	}
+
+	private void checkPosition(Position target) throws Exception, InvalidMoveException{
+		if (!(target.isValid()))
+			throw new InvalidMoveException("옳지 않은 좌표입니다.");
 	}
 
 	abstract List<Position> getPossibleMoves();
@@ -125,5 +130,9 @@ public abstract class Piece {
 	
 	public Position getPosition() {
 		return this.position;
+	}
+
+	public Color getColor() {
+		return this.color;
 	}
 }

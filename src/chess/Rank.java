@@ -80,7 +80,7 @@ public class Rank {
 		rank.set(xPosition, targetPiece);
 	}
 
-	Piece move(Piece sourcePiece, Position target) {
+	Piece move(Piece sourcePiece, Position target) throws Exception {
 		sourcePiece.move(target);
 		rank.set(target.getX(), sourcePiece);
 		return sourcePiece;

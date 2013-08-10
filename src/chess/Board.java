@@ -52,11 +52,18 @@ public class Board {
 		return rank.findPiece(position);
 	}
 
-	void movePiece(String source, String target) {
+	void movePiece(String source, String target) throws Exception {
 		movePiece(new Position(source), new Position(target));
 	}
 
-	void movePiece(Position source, Position target) {
+	void movePiece(Position source, Position target) throws Exception{
+		try {
+			isColorSame(source, target);
+		} catch (SameColorTargetException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
+
 		Piece targetPiece = findPiece(source);
 		Piece sourcePiece = targetPiece.leave();
 		
@@ -67,6 +74,14 @@ public class Board {
 		targetRank.move(targetPiece, target);
 	}
 	
+	private void isColorSame(Position source, Position target) throws Exception, SameColorTargetException {
+		Piece targetPiece = findPiece(target);
+		Piece sourcePiece = findPiece(source);
+		
+		if (targetPiece.getColor() == sourcePiece.getColor())
+			throw new SameColorTargetException("이동하려는 위치에 같은 편 말이 존재합니다.");
+	}
+
 	String generateRank(int rankIndex) {
 		Rank rank = ranks.get(rankIndex);
 		StringBuilder sb = new StringBuilder();
