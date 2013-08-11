@@ -4,7 +4,6 @@ import java.util.List;
 import pieces.Piece.Color;
 
 public interface PieceOperations {
-
 	public abstract char getSymbol();
 
 	public abstract PieceOperations leave();

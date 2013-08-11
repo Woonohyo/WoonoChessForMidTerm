@@ -8,7 +8,8 @@ import pieces.Position;
 
 public class Board {
 	List<Rank> ranks = new ArrayList<Rank>();
-	
+
+	private InitializingBoard initializeBoard = new InitializingBoardRegular();
 	private GeneratingBoard generateBoard = new GeneratingBoardForConsole();
 	public static final String NEW_LINE = System.getProperty("line.separator");
 	public static final int ROW_SIZE = 8;
@@ -17,30 +18,12 @@ public class Board {
 	Board() {
 	}
 
-	void initialize() {
-		for (int i = 0; i < ROW_SIZE; i++) {
-			Rank rank = new Rank(i);
-			if (i == 0) {
-				rank.initializeWhiteExceptPawn();
-			} else if (i == 1) {
-				rank.initializeWhitePawn();
-			} else if (i == 6) {
-				rank.initializeBlackPawn();
-			} else if (i == 7) {
-				rank.initializeBlackExceptPawn();
-			} else {
-				rank.initializeEmpty();
-			}
-			ranks.add(rank);
-		}
+	public void initialize() {
+		initializeBoard.initialize(this);
 	}
 
-	void initializeEmpty() {
-		for (int i = 0; i < ROW_SIZE; i++) {
-			Rank rank = new Rank(i);
-			rank.initializeEmpty();
-			ranks.add(rank);
-		}
+	public void setInitialize(InitializingBoard mode) {
+		this.initializeBoard = mode;
 	}
 
 	PieceOperations findPiece(String xy) {
@@ -83,7 +66,7 @@ public class Board {
 			throws Exception, ImpossibleMoveException {
 		PieceOperations sourcePiece = findPiece(source);
 		List<Position> possibleMoves = sourcePiece.getPossibleMoves();
-		
+
 		if (!(possibleMoves.contains(target)))
 			throw new ImpossibleMoveException("해당 기물은 목표 위치로 이동할 수 없습니다.");
 	}
@@ -103,11 +86,11 @@ public class Board {
 		sb.append(rank.generate());
 		return sb.toString();
 	}
-	
+
 	void setGenerateBoard(GeneratingBoard generateType) {
 		this.generateBoard = generateType;
 	}
-	
+
 	public String generateBoard() {
 		return generateBoard.generateBoard(this, ranks);
 	}

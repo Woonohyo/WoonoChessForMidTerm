@@ -2,45 +2,46 @@ package pieces;
 
 import java.util.List;
 
-
-public abstract class Piece implements PieceOperations{
+public abstract class Piece implements PieceOperations {
 	public enum Color {
-		WHITE,
-		BLACK,
+		WHITE, 
+		BLACK, 
 		NOCOLOR;
 	}
-	
+
 	public enum Type {
-		PAWN('p'),
-		ROOK('r'),
-		KNIGHT('n'),
-		BISHOP('b'),
-		QUEEN('q'),
-		KING('k'),
+		PAWN('p'), 
+		ROOK('r'), 
+		KNIGHT('n'), 
+		BISHOP('b'), 
+		QUEEN('q'), 
+		KING('k'), 
 		EMPTY('.');
-		
+
 		private char symbol;
-		
+
 		private Type(char symbol) {
 			this.symbol = symbol;
 		}
-		
+
 		public char getSymbol() {
 			return symbol;
 		}
 	}
-	
+
 	private Color color;
 	private Type type;
 	private Position position;
-	
+
 	Piece(Color color, Type type, Position position) {
 		this.color = color;
 		this.type = type;
 		this.position = position;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#getSymbol()
 	 */
 	@Override
@@ -50,63 +51,82 @@ public abstract class Piece implements PieceOperations{
 		}
 		return type.getSymbol();
 	}
-	
-    boolean isWhite() {
-        if (Color.WHITE == color) {
-            return true;
-        }
-        
-        return false;
-    }
 
-    boolean isBlack() {
-        if (Color.BLACK == color) {
-            return true;
-        }
-        
-        return false;
-    }
-    
+	boolean isWhite() {
+		if (Color.WHITE == color) {
+			return true;
+		}
+
+		return false;
+	}
+
+	boolean isBlack() {
+		if (Color.BLACK == color) {
+			return true;
+		}
+
+		return false;
+	}
+
 	boolean matchColor(Color color) {
 		return this.color == color ? true : false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#leave()
 	 */
 	@Override
 	public Piece leave() {
 		return new Empty(Color.NOCOLOR, this.position);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#move(pieces.Position)
 	 */
 	@Override
 	public PieceOperations move(Position target) throws Exception {
 		try {
 			checkPosition(target);
+			checkEmpty();
 		} catch (InvalidMoveException e) {
 			System.out.println(e.getMessage());
+			return this;
+		} catch (MovingEmptyException e) {
+			System.out.println(e.getMessage());
+			return this;
 		}
 
 		this.position = target;
-		
+
 		return this;
 	}
 
-	private void checkPosition(Position target) throws Exception, InvalidMoveException{
+	private void checkEmpty() throws Exception, MovingEmptyException {
+		if (this.type == Type.EMPTY || this.color == Color.NOCOLOR)
+			throw new MovingEmptyException("해당 위치에는 기물이 존재하지 않습니다.");
+	}
+
+	private void checkPosition(Position target) throws Exception,
+			InvalidMoveException {
 		if (!(target.isValid()))
 			throw new InvalidMoveException("옳지 않은 좌표입니다.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#getPossibleMoves()
 	 */
 	@Override
 	public abstract List<Position> getPossibleMoves();
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#hashCode()
 	 */
 	@Override
@@ -120,7 +140,9 @@ public abstract class Piece implements PieceOperations{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#equals(java.lang.Object)
 	 */
 	@Override
@@ -144,7 +166,9 @@ public abstract class Piece implements PieceOperations{
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#toString()
 	 */
 	@Override
@@ -152,8 +176,10 @@ public abstract class Piece implements PieceOperations{
 		return "Piece [color=" + color + ", type=" + type + ", position="
 				+ position + "]";
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#getPosition()
 	 */
 	@Override
@@ -161,7 +187,9 @@ public abstract class Piece implements PieceOperations{
 		return this.position;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see pieces.PieceOperations#getColor()
 	 */
 	@Override

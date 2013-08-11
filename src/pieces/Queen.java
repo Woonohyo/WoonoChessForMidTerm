@@ -2,17 +2,16 @@ package pieces;
 
 import java.util.List;
 
-
-public class Queen extends Piece {
+public class Queen extends Piece{
 	public Queen(Color color, Position position) {
 		super(color, Type.QUEEN, position);
 	}
 
 	@Override
-	public
-	List<Position> getPossibleMoves() {
-		PositionController possibleMoves = new PositionController(super.getPosition());
-		
+	public List<Position> getPossibleMoves() {
+		PositionController possibleMoves = new PositionController(
+				super.getPosition());
+
 		return possibleMoves.findsAllPositionAll();
 	}
 }

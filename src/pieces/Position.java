@@ -35,32 +35,33 @@ public class Position {
 	public int getY() {
 		return this.y;
 	}
-	
+
 	Position move(Direction direction) {
-		return new Position(this.x + direction.getXDegree(), this.y + direction.getYDegree());
+		return new Position(this.x + direction.getXDegree(), this.y
+				+ direction.getYDegree());
 	}
 
 	List<Position> findsPosition(Direction direction) {
 		ArrayList<Position> positions = new ArrayList<Position>();
 		Position currentPosition = move(direction);
-		while(currentPosition.isValid()) {
+		while (currentPosition.isValid()) {
 			positions.add(currentPosition);
 			currentPosition = currentPosition.move(direction);
 		}
 		return positions;
 	}
-	
+
 	// 1칸만 이동할 수 있는 기물에게 필요한 메소드입니다.
 	List<Position> findsPositionOnce(Direction direction) {
 		ArrayList<Position> positions = new ArrayList<Position>();
 		Position currentPosition = move(direction);
-		if(currentPosition.isValid()) {
+		if (currentPosition.isValid()) {
 			positions.add(currentPosition);
 			currentPosition = currentPosition.move(direction);
 		}
 		return positions;
 	}
-	
+
 	// 2칸만 이동할 경우에 필요한 메소드입니다.
 	List<Position> findsPositionTwice(Direction direction) {
 		int i = 0;
@@ -73,7 +74,7 @@ public class Position {
 		}
 		return positions;
 	}
-	
+
 	// 나이트의 이동을 구현하기 위해 필요한 메소드입니다.
 	List<Position> findsPositionKnight(Direction via, Direction move) {
 		ArrayList<Position> positions = new ArrayList<Position>();
@@ -85,13 +86,13 @@ public class Position {
 		}
 		return positions;
 	}
-	
+
 	boolean isValid() {
-		if ( y < 0 || y >= GeneratingBoard.ROW_SIZE) {
+		if (y < 0 || y >= GeneratingBoard.ROW_SIZE) {
 			return false;
 		}
 
-		if ( x < 0 || x >= GeneratingBoard.COLUMN_SIZE) {
+		if (x < 0 || x >= GeneratingBoard.COLUMN_SIZE) {
 			return false;
 		}
 
@@ -127,7 +128,5 @@ public class Position {
 	public String toString() {
 		return "Position [x=" + x + ", y=" + y + "]";
 	}
-
-
 
 }
