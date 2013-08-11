@@ -8,6 +8,6 @@ public interface GeneratingBoard {
 	public static final int ROW_SIZE = 8;
 	public static final int COLUMN_SIZE = 8;
 	
-	public String generateBoard(List<Rank> ranks);
-	String generateRank(int rankIndex);
+	public String generateBoard(Board board, List<Rank> ranks);
+	String generateRank(Board board, int rankIndex);
 }

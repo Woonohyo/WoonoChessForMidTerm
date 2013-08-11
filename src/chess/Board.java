@@ -109,6 +109,6 @@ public class Board {
 	}
 	
 	public String generateBoard() {
-		return generateBoard.generateBoard(ranks);
+		return generateBoard.generateBoard(this, ranks);
 	}
 }

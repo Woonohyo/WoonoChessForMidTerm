@@ -98,7 +98,7 @@ public class BoardTest extends TestCase {
 		assertEquals(expected, board.generateBoard());
 		System.out.println(board.generateBoard());
 		
-		//웹페이지로 출력하기 위한 메소드 호
+		//웹페이지로 출력하기 위한 메소드 호출 
 		board.setGenerateBoard(new GeneratingBoardForWeb());
 		assertEquals("이 메세지가 보인다면 웹 페이지용으로 출력이 가능한 상태입니다.", board.generateBoard());
 		System.out.println(board.generateBoard());
