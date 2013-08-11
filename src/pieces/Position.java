@@ -3,7 +3,7 @@ package pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import chess.Board;
+import chess.GeneratingBoard;
 
 public class Position {
 	private static final char COLUMN_START_CHAR = 'a';
@@ -87,11 +87,11 @@ public class Position {
 	}
 	
 	boolean isValid() {
-		if ( y < 0 || y >= Board.ROW_SIZE) {
+		if ( y < 0 || y >= GeneratingBoard.ROW_SIZE) {
 			return false;
 		}
 
-		if ( x < 0 || x >= Board.COLUMN_SIZE) {
+		if ( x < 0 || x >= GeneratingBoard.COLUMN_SIZE) {
 			return false;
 		}
 

@@ -7,11 +7,12 @@ import pieces.PieceOperations;
 import pieces.Position;
 
 public class Board {
+	List<Rank> ranks = new ArrayList<Rank>();
+	
+	private GeneratingBoard generateBoard = new GeneratingBoardForConsole();
 	public static final String NEW_LINE = System.getProperty("line.separator");
 	public static final int ROW_SIZE = 8;
 	public static final int COLUMN_SIZE = 8;
-
-	List<Rank> ranks = new ArrayList<Rank>();
 
 	Board() {
 	}
@@ -102,12 +103,12 @@ public class Board {
 		sb.append(rank.generate());
 		return sb.toString();
 	}
-
-	String generateBoard() {
-		StringBuilder sb = new StringBuilder();
-		for (int i = ROW_SIZE; i > 0; i--) {
-			sb.append(generateRank(i - 1) + NEW_LINE);
-		}
-		return sb.toString();
+	
+	void setGenerateBoard(GeneratingBoard generateType) {
+		this.generateBoard = generateType;
+	}
+	
+	public String generateBoard() {
+		return generateBoard.generateBoard(ranks);
 	}
 }

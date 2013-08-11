@@ -24,20 +24,20 @@ public class BoardTest extends TestCase {
 	public void testPrint() throws Exception {
 		board.initialize();
 		String expected = 
-			RankTest.BLACK_EXCEPT_PAWN_RANK + Board.NEW_LINE +
-			RankTest.BLACK_PAWN_RANK + Board.NEW_LINE +
+			RankTest.BLACK_EXCEPT_PAWN_RANK + GeneratingBoard.NEW_LINE +
+			RankTest.BLACK_PAWN_RANK + GeneratingBoard.NEW_LINE +
 			createEmptyRank() + 
 			createEmptyRank() + 
 			createEmptyRank() + 
 			createEmptyRank() +
-			RankTest.WHITE_PAWN_RANK + Board.NEW_LINE +
-			RankTest.WHITE_EXCEPT_PAWN_RANK + Board.NEW_LINE;
+			RankTest.WHITE_PAWN_RANK + GeneratingBoard.NEW_LINE +
+			RankTest.WHITE_EXCEPT_PAWN_RANK + GeneratingBoard.NEW_LINE;
 		assertEquals(expected, board.generateBoard());
 		System.out.println(board.generateBoard());
 	}
 	
 	private String createEmptyRank() {
-		return RankTest.EMPTY_RANK + Board.NEW_LINE;
+		return RankTest.EMPTY_RANK + GeneratingBoard.NEW_LINE;
 	}
 	
 	public void testFindPiece() throws Exception {
@@ -82,5 +82,25 @@ public class BoardTest extends TestCase {
 		board.movePiece(source, target);
 		assertEquals(new Pawn(Color.WHITE, source), board.findPiece(source));
 		assertEquals(new Empty(Color.NOCOLOR, target), board.findPiece(target));;
+	}
+	
+	public void testPrintUsingInterface() throws Exception {
+		board.initialize();
+		String expected = 
+			RankTest.BLACK_EXCEPT_PAWN_RANK + GeneratingBoard.NEW_LINE +
+			RankTest.BLACK_PAWN_RANK + GeneratingBoard.NEW_LINE +
+			createEmptyRank() + 
+			createEmptyRank() + 
+			createEmptyRank() + 
+			createEmptyRank() +
+			RankTest.WHITE_PAWN_RANK + GeneratingBoard.NEW_LINE +
+			RankTest.WHITE_EXCEPT_PAWN_RANK + GeneratingBoard.NEW_LINE;
+		assertEquals(expected, board.generateBoard());
+		System.out.println(board.generateBoard());
+		
+		//웹페이지로 출력하기 위한 메소드 호
+		board.setGenerateBoard(new GeneratingBoardForWeb());
+		assertEquals("이 메세지가 보인다면 웹 페이지용으로 출력이 가능한 상태입니다.", board.generateBoard());
+		System.out.println(board.generateBoard());
 	}
 }

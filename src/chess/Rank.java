@@ -24,19 +24,19 @@ public class Rank {
 	}
 
 	void initializeEmpty() {
-		for (int i = 0; i < Board.COLUMN_SIZE; i++) {
+		for (int i = 0; i < GeneratingBoard.COLUMN_SIZE; i++) {
 			rank.add( new Empty(Color.NOCOLOR, new Position(i, rankPosition)) );
 		}
 	}
 	
 	void initializeWhitePawn() {
-		for (int i = 0; i < Board.COLUMN_SIZE; i++) {
+		for (int i = 0; i < GeneratingBoard.COLUMN_SIZE; i++) {
 			rank.add(new Pawn(Color.WHITE, new Position(i, rankPosition)) );
 		}
 	}
 	
 	void initializeBlackPawn() {
-		for (int i = 0; i < Board.COLUMN_SIZE; i++) {
+		for (int i = 0; i < GeneratingBoard.COLUMN_SIZE; i++) {
 			rank.add(new Pawn(Color.BLACK, new Position(i, rankPosition)) );
 		}
 	}
@@ -66,7 +66,7 @@ public class Rank {
 
 	String generate() {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < Board.COLUMN_SIZE; i++) {
+		for (int i = 0; i < GeneratingBoard.COLUMN_SIZE; i++) {
 			sb.append(rank.get(i).getSymbol());
 		}
 		return sb.toString();
